@@ -3,9 +3,11 @@ package cc.yelosta.example;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 public class FunctionalInterfaceExample {
     public static void main(String[] args) {
@@ -87,6 +89,39 @@ public class FunctionalInterfaceExample {
         System.out.println("positive integers with static method: " + filter(numbers,isPositive));
         System.out.println("less than 3 integers static method : " + filter(numbers, lessThan3));
 
+        /**
+         * Supplier 활용
+         */
+        final Supplier<String> helloSupplier = () -> "Hello";
+        System.out.println(helloSupplier.get() + "world");
+
+//        printIfValidIndex(0, "Kevin");
+//        printIfValidIndex(1, "Kevin");
+//        printIfValidIndex(-1, "Kevin");
+
+        long start = System.currentTimeMillis();
+        printIfValidIndex(0, () -> getVeryExpensiveValue());
+        printIfValidIndex(-1, () -> getVeryExpensiveValue());
+        printIfValidIndex(-2, () -> getVeryExpensiveValue());
+        System.out.println("It took " + (( System.currentTimeMillis() - start )) / 1000 + " seconds.");
+    }
+
+    private static String getVeryExpensiveValue() {
+        //가정 : 굉장히 많은 computing power 를 소모
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        return "Kevin";
+    }
+//    private static void printIfValidIndex(int number, String value) {
+    private static void printIfValidIndex(int number, Supplier<String> valueSupplier) {
+        if (number >= 0) {
+            System.out.println("The value is " + valueSupplier.get() + ".");
+        } else {
+            System.out.println("Invalid");
+        }
     }
     private static <T> List<T> filter(List<T> list, Predicate<T> filter) {
         List<T> result = new ArrayList<>();
