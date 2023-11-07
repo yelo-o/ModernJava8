@@ -25,8 +25,6 @@ public class WhyJava8 {
 
         System.out.println(result2);
         System.out.println(result3);
-
-
     }
 }
 class UsingStringBuilder {
@@ -53,6 +51,4 @@ class UsingStream {
     final String result = numbers.stream()
             .map(String::valueOf)
             .collect(joining(" : "));
-
-
 }
