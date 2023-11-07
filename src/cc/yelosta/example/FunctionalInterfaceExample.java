@@ -1,5 +1,8 @@
 package cc.yelosta.example;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -57,6 +60,41 @@ public class FunctionalInterfaceExample {
         System.out.println(isPositive.test(0));
         System.out.println(isPositive.test(-1));
 
+        //Predicate 예제
+        List<Integer> numbers = Arrays.asList(-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5);
 
+        //양의 정수 구하기
+        List<Integer> positiveNumbers = new ArrayList<>();
+        for (Integer num : numbers) {
+            if (isPositive.test(num)) {
+                positiveNumbers.add(num);
+            }
+        }
+        System.out.println("positive integers : " + positiveNumbers);
+
+        //3보다 작은 정수 구하기
+        Predicate<Integer> lessThan3 = i -> i < 3;
+        List<Integer> numberLessThan3 = new ArrayList<>();
+        for (Integer num : numbers) {
+            if (lessThan3.test(num)) {
+                numberLessThan3.add(num);
+            }
+        }
+        System.out.println("less than 3 integers : " + numberLessThan3);
+
+        //static 메소드 사용해서 구하기
+
+        System.out.println("positive integers with static method: " + filter(numbers,isPositive));
+        System.out.println("less than 3 integers static method : " + filter(numbers, lessThan3));
+
+    }
+    private static <T> List<T> filter(List<T> list, Predicate<T> filter) {
+        List<T> result = new ArrayList<>();
+        for (T input : list) {
+            if (filter.test(input)) {
+                result.add(input);
+            }
+        }
+        return result;
     }
 }
