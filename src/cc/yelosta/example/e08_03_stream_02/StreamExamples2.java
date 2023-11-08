@@ -1,4 +1,4 @@
-package cc.yelosta.example;
+package cc.yelosta.example.e08_03_stream_02;
 
 import java.util.ArrayList;
 import java.util.Arrays;

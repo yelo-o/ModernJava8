@@ -1,4 +1,4 @@
-package cc.yelosta.example;
+package cc.yelosta.example.e08_03_stream_04;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

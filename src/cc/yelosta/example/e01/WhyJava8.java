@@ -1,4 +1,4 @@
-package cc.yelosta.example;
+package cc.yelosta.example.e01;
 
 import lombok.Getter;
 

@@ -1,4 +1,4 @@
-package cc.yelosta.example;
+package cc.yelosta.example.e08_03_stream_01;
 
 import java.math.BigInteger;
 import java.util.stream.IntStream;
