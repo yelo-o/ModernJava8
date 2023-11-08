@@ -2,12 +2,11 @@ package cc.yelosta.example;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.*;
 
-public class StreamExample3 {
+public class StreamExamples3 {
     public static void main(String[] args) {
 
         System.out.println("collect(toList()) : " +
